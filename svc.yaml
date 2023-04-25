@@ -5,6 +5,7 @@ metadata:
   labels:
     app: srlinux
   name: srlinux
+  namespace: test
 spec:
   ports:
   - port: 22

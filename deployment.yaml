@@ -5,6 +5,7 @@ metadata:
   labels:
     app: srlinux
   name: srlinux
+  namespace: test
 spec:
   replicas: 1
   selector:
@@ -28,6 +29,8 @@ spec:
         name: srlinux
         securityContext:
           privileged: true
+          runAsUser: 1001
+          runAsGroup: 1001
         volumeMounts:
         - mountPath: /tmp
           name: topology

@@ -9,4 +9,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: sr-sa
-  namespace: testing
+  namespace: test

@@ -3,8 +3,8 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: srlinux1
-  name: srlinux1
+    run: srlinux-single
+  name: srlinux-single
 spec:
   containers:
   - args:
@@ -12,7 +12,7 @@ spec:
     - bash
     - /opt/srlinux/bin/sr_linux
     image: ghcr.io/nokia/srlinux
-    name: srlinux1
+    name: srlinux-single
     resources: {}
     securityContext:
       privileged: true
@@ -20,9 +20,11 @@ spec:
     - mountPath: /tmp/topology.yml
       name: topology
   volumes:
+  volumes:
   - name: topology
-    hostPath:
-      path: ./topology.yml
-      type: File
-  restartPolicy: Always
+    configMap:
+      name: syed-sr-router-config
+      items:
+        - key: topology.yml
+          path: topology.yml
 
