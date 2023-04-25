@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: srlinux
+  name: srlinux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: srlinux
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: srlinux
+    spec:
+      serviceAccount: sr-sa
+      serviceAccountName: sr-sa
+      containers:
+      - command:
+        - sudo
+        - bash
+        - /opt/srlinux/bin/sr_linux
+        image: ghcr.io/nokia/srlinux
+        name: srlinux
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - mountPath: /tmp
+          name: topology
+      volumes:
+      - name: topology
+        configMap:
+          name: syed-sr-router-config
+          items:
+            - key: topology.yml
+              path: topology.yml
