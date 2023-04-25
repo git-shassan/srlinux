@@ -11,14 +11,12 @@ Set the desired namespace value in kustomization.yaml
 [mano@bastion srlinux]$ oc apply -k ./
 namespace/sr-namespace created
 serviceaccount/sr-sa created
-clusterrolebinding.rbac.authorization.k8s.io/system:openshift:scc:privileged configured
+clusterrolebinding.rbac.authorization.k8s.io/system:openshift:scc:privileged created
 configmap/syed-sr-router-config created
 service/srlinux created
-Warning: would violate PodSecurity "restricted:latest": privileged (container "srlinux" must not set securityContext.privileged=true), allowPrivilegeEscalation != false (container "srlinux" must set securityContext.allowPrivilegeEscalation=false), unrestricted capabilities (container "srlinux" must set securityContext.capabilities.drop=["ALL"]), runAsNonRoot != true (pod or container "srlinux" must set securityContext.runAsNonRoot=true), seccompProfile (pod or container "srlinux" must set securityContext.seccompProfile.type to "RuntimeDefault" or "Localhost")
 deployment.apps/srlinux created
 [mano@bastion srlinux]$ 
 ```
-
 
 ### Once its running:
 
